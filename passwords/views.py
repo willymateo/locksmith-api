@@ -5,7 +5,7 @@ from passwords.models import Password, PasswordCategory
 
 
 @api_view(["GET"])
-def get_passwords():
+def get_passwords(request):
     passwords = Password.objects.all()
 
     return Response(passwords)
@@ -36,7 +36,7 @@ def create_password(request):
         name=request.data.get("name"),
         username=request.data.get("username"),
         password=request.data.get("password"),
-        category_id=request.data.get("category_id"),
+        password_category_id=request.data.get("password_category_id"),
     )
 
     return Response(new_password)
@@ -51,7 +51,7 @@ def update_password(request):
         password.name = request.data.get("name")
         password.username = request.data.get("username")
         password.password = request.data.get("password")
-        password.category_id = request.data.get("category_id")
+        password.password_category_id = request.data.get("password_category_id")
 
         password.save()
 
