@@ -22,3 +22,5 @@ urlpatterns = [
     path("auth", include("auth.urls")),
     path("passwords", include("passwords.urls")),
 ]
+
+handler404 = "locksmith.views.project404Handler"
