@@ -10,6 +10,6 @@ https://docs.djangoproject.com/en/5.1/howto/deployment/wsgi/
 from django.core.wsgi import get_wsgi_application
 import os
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "locksmith.django.development")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "locksmith.settings")
 
 application = get_wsgi_application()

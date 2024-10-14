@@ -78,8 +78,32 @@ WSGI_APPLICATION = "locksmith.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {}
-
+DATABASES = {
+    "default": {
+        "ENGINE": env.str("DJANGO_DB_DEFAULT_ENGINE"),
+        "NAME": env.str("DJANGO_DB_DEFAULT_NAME"),
+        "USER": env.str("DJANGO_DB_DEFAULT_USER"),
+        "PASSWORD": env.str("DJANGO_DB_DEFAULT_PASSWORD"),
+        "HOST": env.str("DJANGO_DB_DEFAULT_HOST"),
+        "PORT": env.str("DJANGO_DB_DEFAULT_PORT"),
+        "OPTIONS": {
+            "pool": {
+                # https://www.psycopg.org/psycopg3/docs/api/pool.html#module-psycopg_pool
+                "min_size": env.int("DJANGO_DB_DEFAULT_POOL_MIN_SIZE"),
+                "max_size": env.int("DJANGO_DB_DEFAULT_POOL_MAX_SIZE"),
+                "name": env.str("DJANGO_DB_DEFAULT_POOL_NAME"),
+                "timeout": env.float("DJANGO_DB_DEFAULT_POOL_TIMEOUT"),
+                "max_waiting": env.int("DJANGO_DB_DEFAULT_POOL_MAX_WAITING"),
+                "max_lifetime": env.float("DJANGO_DB_DEFAULT_POOL_MAX_LIFETIME"),
+                "max_idle": env.float("DJANGO_DB_DEFAULT_POOL_MAX_IDLE"),
+                "reconnect_timeout": env.float(
+                    "DJANGO_DB_DEFAULT_POOL_RECONNECT_TIMEOUT"
+                ),
+                "num_workers": env.int("DJANGO_DB_DEFAULT_POOL_NUM_WORKERS"),
+            },
+        },
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -122,4 +146,6 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-from locksmith.settings.cors import *
+APPEND_SLASH = True
+
+from locksmith.app_settings.cors import *
