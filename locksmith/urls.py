@@ -19,8 +19,8 @@ from django.contrib import admin
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("auth", include("auth.urls")),
-    path("passwords", include("passwords.urls")),
+    path("auth/", include("auth.urls")),
+    path("passwords/", include("passwords.urls")),
 ]
 
 handler404 = "locksmith.views.project404Handler"
